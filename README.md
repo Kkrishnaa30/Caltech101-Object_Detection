@@ -1,69 +1,77 @@
 # 📌 Caltech101-Object_Detection  
 
 ## 🚀 Project Overview  
-This project focuses on **object detection** using a subset of the **Caltech101** dataset. The aim is to train a deep learning model to detect and classify three specific object categories:  
+This project focuses on **object detection** using a subset of the **Caltech101** dataset. The objective is to train a deep learning model to **detect and classify objects within images** by predicting their bounding boxes and labels.  
+
+The key **object categories** used in this project include:  
 
 🔹 **Butterfly** 🦋  
 🔹 **Dalmatian** 🐶  
 🔹 **Dolphin** 🐬  
 
-The model is built using **transfer learning** with pre-trained architectures like **VGG16, VGG19, or ResNet**, fine-tuned for **bounding box prediction** and **class classification**.  
+The model leverages **transfer learning** with pre-trained architectures like **VGG16, VGG19, or ResNet** and is fine-tuned for **bounding box prediction and classification**.  
 
 ---
 
-## 📂 Dataset  
-📌 The dataset is derived from **Caltech101** and includes annotated images.  
-📌 Bounding box annotations are pre-processed and normalized for model training.  
+## 📂 Dataset Overview  
+The dataset is a **reduced version of Caltech101**, containing images of the selected classes with **bounding box annotations**. The dataset is structured to include:  
 
----
-## 🛠 Implementation Steps  
+✅ **Raw images** – JPEG format images labeled per class.  
+✅ **Bounding box labels** – JSON/XML files containing object localization data.  
+✅ **Preprocessed dataset** – Normalized bounding box values for training.  
 
-✅ **Data Preprocessing**  
-🔹 Extract image filenames and bounding box annotations.  
-🔹 Normalize bounding box coordinates.  
-🔹 Convert class labels into a one-hot encoded format.  
-
-✅ **Model Training**  
-🔹 Use **transfer learning** with **VGG16, VGG19, or ResNet**.  
-🔹 Modify the architecture to predict **bounding boxes** and **class labels**.  
-🔹 Implement **custom loss functions** for bounding box regression and classification.  
-
-✅ **Model Evaluation**  
-🔹 Predict bounding boxes and class labels on test images.  
-🔹 Assess performance using **IoU (Intersection over Union)** and classification accuracy.  
-🔹 Save the trained model for further inference.  
+💡 **Bounding Box Format:** Each object in the dataset is labeled with its **xmin, ymin, xmax, ymax** coordinates representing its position in the image.  
 
 ---
 
-## ▶ How to Run  
+## 🛠 Implementation Details  
 
-1️⃣ **Clone the repository**  
-```bash
-git clone https://github.com/Kkrishnaa30/Caltech101-Object_Detection.git
-```
+### ✅ 1. Data Preprocessing  
+🔹 Load images and extract bounding box annotations.  
+🔹 Resize images and normalize pixel values.  
+🔹 Convert class labels into a **one-hot encoded format**.  
+🔹 Normalize bounding box coordinates to be relative to image dimensions.  
 
-2️⃣ **Install dependencies**  
-```bash
-pip install -r requirements.txt
-```
+### ✅ 2. Model Architecture  
+The object detection model consists of **two key components**:  
 
-3️⃣ **Run Jupyter Notebook**  
-```bash
-jupyter notebook
-```
+1️⃣ **Feature Extractor:**  
+- Uses **transfer learning** with pre-trained architectures such as **VGG16, VGG19, or ResNet** to extract meaningful features from images.  
+- The convolutional base is frozen initially, then fine-tuned for better performance.  
 
-4️⃣ **Open and execute** `Caltech101_Object_Detection Reworked.ipynb`.  
+2️⃣ **Custom Head for Detection & Classification:**  
+- A **fully connected network** is added on top of the pre-trained backbone.  
+- The final output consists of **two branches**:  
+  - **Bounding Box Regression (4 Neurons, Linear Activation):** Predicts `xmin, ymin, xmax, ymax`.  
+  - **Classification (Softmax Layer):** Predicts the class of the detected object.  
+
+### ✅ 3. Model Training  
+🔹 Implemented a **multi-output loss function** combining **Mean Squared Error (MSE)** for bounding box regression and **Categorical Cross-Entropy** for classification.  
+🔹 Used **Adam optimizer** for efficient gradient updates.  
+🔹 Trained on the **processed dataset** with augmented images for better generalization.  
+
+### ✅ 4. Model Evaluation  
+🔹 Predictions are evaluated using **IoU (Intersection over Union)** for bounding box accuracy.  
+🔹 Classification accuracy is assessed for label correctness.  
+🔹 Sample predictions are visualized using Matplotlib.  
 
 ---
 
-## 📊 Results  
-✅ The model successfully detects and classifies objects in images.  
-✅ Performance evaluation includes **bounding box accuracy, classification accuracy, and visualized predictions**.  
+## 📊 Results & Key Findings  
+✅ The trained model successfully detects and classifies objects with reasonable accuracy.  
+✅ Bounding box predictions align well with ground truth annotations.  
+✅ Performance metrics indicate room for improvement, particularly in complex backgrounds.  
 
 ---
 
 ## 🔮 Future Enhancements  
-🚀 **Improve accuracy** with more advanced architectures like **Faster R-CNN**.  
-📈 **Optimize model hyperparameters** using **Keras Tuner**.  
-🖼 **Expand dataset** to include more object categories for better generalization.  
+🚀 **Fine-tune model performance** by experimenting with **Faster R-CNN, SSD, or YOLO** architectures.  
+📈 **Use Keras Tuner** for optimizing hyperparameters and improving generalization.  
+🖼 **Expand the dataset** to include more object categories for better scalability.  
+⚡ **Implement real-time detection** using OpenCV for real-world applications.  
 
+---
+
+## 👤 Contributor  
+👨‍💻 **Krishna Khandelwal**  
+💡 Always open to collaborations! Feel free to contribute or suggest improvements. 😊  
