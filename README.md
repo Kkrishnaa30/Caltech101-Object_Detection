@@ -16,19 +16,6 @@ The model is built using **transfer learning** with pre-trained architectures li
 📌 Bounding box annotations are pre-processed and normalized for model training.  
 
 ---
-
-## 📁 Project Structure  
-```
-📂 Caltech101-Object_Detection
-│── 📄 Caltech101 Object_Detection Problem Statement.pdf  # Problem statement  
-│── 📄 Caltech101_Object_Detection Reworked.ipynb         # Jupyter notebook with implementation  
-│── 📄 label_binarizer.pkl                               # Pre-trained label binarizer for class encoding  
-│── 📂 Caltech_101_Reduced.zip                           # Processed subset of the dataset  
-│── 📄 README.md                                         # Project documentation  
-```
-
----
-
 ## 🛠 Implementation Steps  
 
 ✅ **Data Preprocessing**  
